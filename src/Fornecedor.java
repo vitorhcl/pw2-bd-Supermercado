@@ -14,8 +14,8 @@ public class Fornecedor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Produto fornecer(Produto produto, int quantidade) {
+	public void fornecer(Produto produto, int quantidade, double precoCusto) {
+		produto.setPrecoCusto(precoCusto);
 		produto.adicionar(quantidade);
-		return produto;
 	}
 }

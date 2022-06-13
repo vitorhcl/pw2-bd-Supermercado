@@ -1,5 +1,5 @@
 
-public class FormProd {
+public class FornProd {
 	private Fornecedor fornecedor;
 	private Produto produto;
 	public Fornecedor getFornecedor() {

@@ -1,17 +1,17 @@
 
 public class FormPag {
-	private String codPag;
 	private String nome;
-	public String getCodPag() {
-		return codPag;
-	}
-	public void setCodPag(String codPag) {
-		this.codPag = codPag;
-	}
+	private FormPagEnum forma;
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public FormPagEnum getForma() {
+		return forma;
+	}
+	public void setForma(FormPagEnum forma) {
+		this.forma = forma;
 	}
 }

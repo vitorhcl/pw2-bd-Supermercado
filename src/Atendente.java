@@ -21,4 +21,8 @@ public class Atendente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public void atenderPedido(Pedido pedido) {
+		pedido.setAten(this);
+		pedido.atendido();
+	}
 }

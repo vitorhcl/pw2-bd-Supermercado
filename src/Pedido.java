@@ -1,16 +1,18 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class Pedido {
-	private String numPedido;
+	private String numero;
 	private Cliente cliente;
 	private FormPag formPag;
 	private Atendente aten;
-	private List<PedProd> produtos;
-	public String getNumPedido() {
-		return numPedido;
+	private boolean atendido = false;
+	private List<ItemPed> itens = new LinkedList<ItemPed>();
+	public String getNumero() {
+		return numero;
 	}
-	public void setNumPedido(String numPedido) {
-		this.numPedido = numPedido;
+	public void setNumPedido(String numero) {
+		this.numero = numero;
 	}
 	public Cliente getCliente() {
 		return cliente;
@@ -30,13 +32,30 @@ public class Pedido {
 	public void setAten(Atendente aten) {
 		this.aten = aten;
 	}
-	public Pedido solicitar(String numPedido, Cliente cliente, FormPag formPag, Atendente aten, List<PedProd> produtos) {
-		Pedido pedido = new Pedido();
-		pedido.numPedido = numPedido;
-		pedido.cliente = cliente;
-		pedido.formPag = formPag;
-		pedido.aten = aten;
-		pedido.produtos = produtos;
-		return pedido;
-	};
+	public void atendido() {
+		this.atendido = true;
+	}
+	public List<ItemPed> getItens() {
+		return itens;
+	}
+	public void setItens(List<ItemPed> itens) {
+		this.itens = itens;
+	}
+	public void cadastrar(String numero, Cliente cliente, FormPag formPag) {
+		this.numero = numero;
+		this.cliente = cliente;
+		this.formPag = formPag;
+	}
+	public void cadastrar(String numero, Cliente cliente, FormPag formPag, List<ItemPed> itens) {
+		this.numero = numero;
+		this.cliente = cliente;
+		this.formPag = formPag;
+		itens.forEach(itemPed -> itemPed.setPedido(this));
+		this.itens = itens;
+	}
+
+	public void adicionarItens(ItemPed... itens) {
+		for(ItemPed item : itens)
+			this.itens.add(item);
+	}
 }

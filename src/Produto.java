@@ -1,38 +1,41 @@
 
 public class Produto {
 	private String codBar;
-	private String nomeProd;
-	private int precoVenda;
-	private int precoCusto;
-	private int estoque = 0;
+	private String nome;
+	private double precoVenda;
+	private double precoCusto;
+	private double estoque = 0;
 	public String getCodBar() {
 		return codBar;
 	}
 	public void setCodBar(String codBar) {
 		this.codBar = codBar;
 	}
-	public String getNomeProd() {
-		return nomeProd;
+	public String getNome() {
+		return nome;
 	}
-	public void setNomeProd(String nomeProd) {
-		this.nomeProd = nomeProd;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public int getPrecoVenda() {
+	public double getPrecoVenda() {
 		return precoVenda;
 	}
-	public void setPrecoVenda(int precoVenda) {
+	public void setPrecoVenda(double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
-	public int getPrecoCusto() {
+	public double getPrecoCusto() {
 		return precoCusto;
 	}
-	public void setPrecoCusto(int precoCusto) {
+	public void setPrecoCusto(double precoCusto) {
 		this.precoCusto = precoCusto;
 	}
-	public int getEstoque() {
+	public double getEstoque() {
 		return estoque;
 	}
 	public void adicionar(int quantidade) {
+		this.estoque += estoque;
+	}
+	public void remover(int quantidade) {
 		this.estoque += estoque;
 	}
 	public String getCategoria() {
