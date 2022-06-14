@@ -52,6 +52,23 @@ public class Pedido {
 		this.numero = numero;
 		this.cliente = cliente;
 		this.formPag = formPag;
+		
+		nf.setPedido(this);
+		int qtdTotal = 0, vlrTotal = 0;
+		for(ItemPed item : this.itens) {
+			qtdTotal += item.getQtd();
+			vlrTotal += item.getProduto().getPrecoVenda() * item.getQtd();
+		}
+		nf.setQtdTotal(qtdTotal);
+		nf.setTotal(vlrTotal);
+		this.nf = nf;
+	}
+	public void listar() {
+		System.out.println("Número: " + this.getNumero());
+		System.out.println("Forma de pagamento: " + this.getFormPag().getNome());
+		this.getCliente().listar();
+		this.getItens().forEach(itemPed -> itemPed.listar());
+		System.out.println("Foi atendido: " + this.isAtendido());
 	}
 	public void cadastrar(String numero, Cliente cliente, FormPag formPag, Nf nf, List<ItemPed> itens) {
 		this.numero = numero;
@@ -64,7 +81,7 @@ public class Pedido {
 		nf.setPedido(this);
 		int qtdTotal = 0;
 		for(ItemPed item : itens) {
-			qtdTotal += item.getQtdPed();
+			qtdTotal += item.getQtd();
 		}
 		nf.setQtdTotal(qtdTotal);
 		

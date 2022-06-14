@@ -18,6 +18,12 @@ public class Fornecedor {
 		this.nome = nome;
 		this.cnpj = cnpj;
 	}
+	public void listar() {
+		Formatador f = new Formatador();
+		
+		System.out.println("Nome: " + this.getNome());
+		System.out.println("CNPJ: " + f.cnpj(this.getCnpj()));
+	}
 	public Produto fornecer(String nome, int quantidade, double precoCusto) {
 		Produto produto = new Produto();
 		produto.setNome(nome);

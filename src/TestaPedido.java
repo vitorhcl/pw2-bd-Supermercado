@@ -20,20 +20,21 @@ public class TestaPedido {
 		Nf nf = new Nf();
 		nf.setCodBar("78995865937");
 		LocalDate dt = LocalDate.now();
-		
 		nf.setDataEmi(dt);
 		nf.setNum("2535");
-		Pedido pedido = new Pedido(); 
-		pedido.cadastrar("1", cliente, formpag, nf);
+		
+		Pedido pedido = new Pedido();
 		pedido.adicionarItens(item1, item2);
+		pedido.cadastrar("1", cliente, formpag, nf);
 		return pedido;
 	}
 	public static void main(String[] args) {
 		Pedido pedido = TestaPedido.criaPedido();
+		System.out.println("Pedido:");
+		pedido.listar();
 		
-		System.out.println("Número: " + pedido.getNumero());
-		System.out.println("Forma de pagamento: " + pedido.getFormPag().getNome());
-		System.out.println("Cliente: " + pedido.getCliente().apresentarCpf());
-		pedido.getItens().forEach(itemPed -> itemPed.listar());
+		System.out.println();
+		System.out.println("Nota Fiscal: ");
+		pedido.getNf().listar();
 	}
 }

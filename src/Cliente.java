@@ -11,8 +11,9 @@ public class Cliente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String apresentarCpf() {
-		return String.format("%s.%s.%s-%s", this.cpf.substring(0, 3), this.cpf.substring(3, 6), this.cpf.substring(6, 9), this.cpf.substring(9, 11));
+	public void listar() {
+		Formatador f = new Formatador();
+		System.out.println(String.format("Cliente %s: %s", codigo, f.cpf(cpf)));
 	}
 	public void cadastrar(String codigo, String cpf) {
 		this.codigo = codigo;

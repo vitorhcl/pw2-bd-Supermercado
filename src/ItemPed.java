@@ -3,10 +3,10 @@ public class ItemPed {
 	private int qtd;
 	private Produto produto;
 	private Pedido pedido;
-	public int getQtdPed() {
+	public int getQtd() {
 		return qtd;
 	}
-	public void setQtdPed(int qtd) {
+	public void setQtd(int qtd) {
 		this.qtd = qtd;
 	}
 	public Produto getProduto() {
@@ -22,11 +22,14 @@ public class ItemPed {
 		this.pedido = pedido;
 	}
 	public void listar() {
+		Formatador f = new Formatador();
+		
 		Produto produto = this.getProduto();
-		System.out.println(String.format("%dx %s (%s)",
-							this.getQtdPed(),
+		System.out.println(String.format("%dx %s (%s): %s",
+							this.getQtd(),
 							produto.getNome(),
-							produto.getCodBar()));
+							f.codBar(produto.getCodBar()),
+							f.moeda(produto.getPrecoVenda() * this.getQtd())));
 	}
 	public void cadastrar(Produto produto, int qtd) {
 		this.produto = produto;

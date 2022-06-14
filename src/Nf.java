@@ -31,7 +31,7 @@ public class Nf {
 	public void setCodBar(String codBar) {
 		this.codBar = codBar;
 	}
-	public Pedido getNumPedido() {
+	public Pedido getPedido() {
 		return pedido;
 	}
 	public void setPedido(Pedido numPedido) {
@@ -42,5 +42,15 @@ public class Nf {
 	}
 	public void setDataEmi(LocalDate dt) {
 		this.dataEmi = dt;
+	}
+	public void listar() {
+		Formatador f = new Formatador();
+		
+		System.out.println("Número: " + this.getNum());
+		System.out.println("Número do pedido: " + this.getPedido().getNumero());
+		System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
+		System.out.println("Total de itens: " + this.getQtdTotal());
+		System.out.println("Valor total: " + f.moeda(this.getTotal()));
+		System.out.println("Data de emissão: " + f.data(this.getDataEmi()));
 	}
 }
