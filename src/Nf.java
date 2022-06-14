@@ -43,6 +43,19 @@ public class Nf {
 	public void setDataEmi(LocalDate dt) {
 		this.dataEmi = dt;
 	}
+	public void cadastrar(String codBar, String num) {
+		this.codBar = codBar;
+		
+		LocalDate dt = LocalDate.now();
+		this.dataEmi = dt;
+		
+		this.num = num;
+	}
+	public void cadastrar(String codBar, String num, LocalDate dataEmi) {
+		this.codBar = codBar;
+		this.dataEmi = dataEmi;
+		this.num = num;
+	}
 	public void listar() {
 		Formatador f = new Formatador();
 		

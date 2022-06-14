@@ -1,7 +1,3 @@
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
-
 public class TestaPedido {
 	public static Pedido criaPedido() {
 		Produto produto1 = TestaProduto.criaProduto1();
@@ -18,10 +14,7 @@ public class TestaPedido {
 		formpag.setNome("Crédito");
 		
 		Nf nf = new Nf();
-		nf.setCodBar("78995865937");
-		LocalDate dt = LocalDate.now();
-		nf.setDataEmi(dt);
-		nf.setNum("2535");
+		nf.cadastrar("78995865937", "2535");
 		
 		Pedido pedido = new Pedido();
 		pedido.adicionarItens(item1, item2);
