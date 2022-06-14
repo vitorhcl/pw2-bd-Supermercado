@@ -1,8 +1,9 @@
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TestaPedido {
-	public static void main(String[] args) {
+	public static Pedido criaPedido() {
 		Produto produto1 = new Produto();
 		produto1.setCodBar("7898357410015");
 		produto1.setNome("Arroz");
@@ -23,9 +24,19 @@ public class TestaPedido {
 		FormPag formpag = new FormPag();
 		formpag.setNome("Crédito");
 		
+		Nf nf = new Nf();
+		nf.setCodBar("78995865937");
+		LocalDate dt = LocalDate.now();
+		
+		nf.setDataEmi(dt);
+		nf.setNum("2535");
 		Pedido pedido = new Pedido(); 
-		pedido.cadastrar("1", cliente, formpag);
+		pedido.cadastrar("1", cliente, formpag, nf);
 		pedido.adicionarItens(item1, item2);
+		return pedido;
+	}
+	public static void main(String[] args) {
+		Pedido pedido = TestaPedido.criaPedido();
 		
 		System.out.println("Número: " + pedido.getNumero());
 		System.out.println("Forma de pagamento: " + pedido.getFormPag().getNome());

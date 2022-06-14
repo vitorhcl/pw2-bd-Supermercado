@@ -22,7 +22,7 @@ public class Atendente {
 		this.nome = nome;
 	}
 	public void atenderPedido(Pedido pedido) {
-		pedido.setAten(this);
+		pedido.setAtendente(this);
 		pedido.atendido();
 	}
 }

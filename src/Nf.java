@@ -1,12 +1,12 @@
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Nf {
 	public String num;
 	public int total;
 	private int qtdTotal;
 	private String codBar;
-	private int numPedido;
-	private Calendar dataEmi;
+	private Pedido pedido;
+	private LocalDate dataEmi;
 	public String getNum() {
 		return num;
 	}
@@ -31,16 +31,16 @@ public class Nf {
 	public void setCodBar(String codBar) {
 		this.codBar = codBar;
 	}
-	public int getNumPedido() {
-		return numPedido;
+	public Pedido getNumPedido() {
+		return pedido;
 	}
-	public void setNumPedido(int numPedido) {
-		this.numPedido = numPedido;
+	public void setPedido(Pedido numPedido) {
+		this.pedido = numPedido;
 	}
-	public Calendar getDataEmi() {
+	public LocalDate getDataEmi() {
 		return dataEmi;
 	}
-	public void setDataEmi(Calendar dataEmi) {
-		this.dataEmi = dataEmi;
+	public void setDataEmi(LocalDate dt) {
+		this.dataEmi = dt;
 	}
 }

@@ -5,7 +5,8 @@ public class Pedido {
 	private String numero;
 	private Cliente cliente;
 	private FormPag formPag;
-	private Atendente aten;
+	private Atendente atendente;
+	private Nf nf;
 	private boolean atendido = false;
 	private List<ItemPed> itens = new LinkedList<ItemPed>();
 	public String getNumero() {
@@ -26,11 +27,11 @@ public class Pedido {
 	public void setFormPag(FormPag formPag) {
 		this.formPag = formPag;
 	}
-	public Atendente getAten() {
-		return aten;
+	public Atendente getAtendente() {
+		return atendente;
 	}
-	public void setAten(Atendente aten) {
-		this.aten = aten;
+	public void setAtendente(Atendente atendente) {
+		this.atendente = atendente;
 	}
 	public void atendido() {
 		this.atendido = true;
@@ -41,21 +42,39 @@ public class Pedido {
 	public void setItens(List<ItemPed> itens) {
 		this.itens = itens;
 	}
-	public void cadastrar(String numero, Cliente cliente, FormPag formPag) {
+	public Nf getNf() {
+		return this.nf;
+	}
+	public void setNf(Nf nf) {
+		this.nf = nf;
+	}
+	public void cadastrar(String numero, Cliente cliente, FormPag formPag, Nf nf) {
 		this.numero = numero;
 		this.cliente = cliente;
 		this.formPag = formPag;
 	}
-	public void cadastrar(String numero, Cliente cliente, FormPag formPag, List<ItemPed> itens) {
+	public void cadastrar(String numero, Cliente cliente, FormPag formPag, Nf nf, List<ItemPed> itens) {
 		this.numero = numero;
 		this.cliente = cliente;
 		this.formPag = formPag;
+		
 		itens.forEach(itemPed -> itemPed.setPedido(this));
 		this.itens = itens;
+		
+		nf.setPedido(this);
+		int qtdTotal = 0;
+		for(ItemPed item : itens) {
+			qtdTotal += item.getQtdPed();
+		}
+		nf.setQtdTotal(qtdTotal);
+		
+		this.nf = nf;
 	}
-
 	public void adicionarItens(ItemPed... itens) {
 		for(ItemPed item : itens)
 			this.itens.add(item);
+	}
+	public boolean isAtendido() {
+		return atendido;
 	}
 }
