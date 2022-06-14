@@ -5,6 +5,7 @@ public class Produto {
 	private double precoVenda;
 	private double precoCusto;
 	private double estoque = 0;
+	private String categoria;
 	public String getCodBar() {
 		return codBar;
 	}
@@ -44,5 +45,9 @@ public class Produto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	private String categoria;
+	public void cadastrar(String codBar, double precoVenda, String categoria) {
+		this.codBar = codBar;
+		this.precoVenda = precoVenda;
+		this.categoria = categoria;
+	}
 }

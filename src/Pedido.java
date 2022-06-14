@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
@@ -8,7 +8,7 @@ public class Pedido {
 	private Atendente atendente;
 	private Nf nf;
 	private boolean atendido = false;
-	private List<ItemPed> itens = new LinkedList<ItemPed>();
+	private List<ItemPed> itens = new ArrayList<ItemPed>();
 	public String getNumero() {
 		return numero;
 	}

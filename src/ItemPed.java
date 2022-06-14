@@ -21,6 +21,13 @@ public class ItemPed {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	public void listar() {
+		Produto produto = this.getProduto();
+		System.out.println(String.format("%dx %s (%s)",
+							this.getQtdPed(),
+							produto.getNome(),
+							produto.getCodBar()));
+	}
 	public void cadastrar(Produto produto, int qtd) {
 		this.produto = produto;
 		this.qtd = qtd;

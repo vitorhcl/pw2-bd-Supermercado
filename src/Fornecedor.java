@@ -14,8 +14,15 @@ public class Fornecedor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void fornecer(Produto produto, int quantidade, double precoCusto) {
+	public void cadastrar(String nome, String cnpj) {
+		this.nome = nome;
+		this.cnpj = cnpj;
+	}
+	public Produto fornecer(String nome, int quantidade, double precoCusto) {
+		Produto produto = new Produto();
+		produto.setNome(nome);
 		produto.setPrecoCusto(precoCusto);
 		produto.adicionar(quantidade);
+		return produto;
 	}
 }
