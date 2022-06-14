@@ -49,7 +49,7 @@ public class Produto {
 		Formatador f = new Formatador();
 		
 		System.out.println("Nome: " + this.getNome());
-		System.out.println("Código de barras: " + this.getCodBar());
+		System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
 		System.out.println("Preço de custo: " + f.moeda(this.getPrecoCusto()));
 		System.out.println("Preço de venda: " + f.moeda(this.getPrecoVenda()));
 		System.out.println("Categoria: " + this.getCategoria());
