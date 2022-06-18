@@ -2,6 +2,10 @@
 public class FormPag {
 	private String nome;
 	private FormPagEnum forma;
+	public FormPag(String nome, FormPagEnum forma) {
+		this.nome = nome;
+		this.forma = forma;
+	}
 	public String getNome() {
 		return nome;
 	}

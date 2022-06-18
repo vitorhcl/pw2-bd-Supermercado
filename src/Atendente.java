@@ -7,6 +7,8 @@ public class Atendente {
 		return cpf;
 	}
 	public void setCpf(String cpf) {
+		if(cpf.length() != 11)
+			throw new IllegalArgumentException();
 		this.cpf = cpf;
 	}
 	public double getSlr() {
@@ -27,7 +29,7 @@ public class Atendente {
 	}
 	public void cadastrar(String cpf, String nome, double slr) {
 		this.nome = nome;
-		this.cpf = cpf;
+		this.setCpf(cpf);
 		this.slr = slr;
 	}
 	public void atenderPedido(Pedido pedido) {

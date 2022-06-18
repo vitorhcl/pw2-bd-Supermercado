@@ -6,6 +6,8 @@ public class Fornecedor {
 		return cnpj;
 	}
 	public void setCnpj(String cnpj) {
+		if(cnpj.length() != 14)
+			throw new IllegalArgumentException();
 		this.cnpj = cnpj;
 	}
 	public String getNome() {
@@ -16,7 +18,7 @@ public class Fornecedor {
 	}
 	public void cadastrar(String nome, String cnpj) {
 		this.nome = nome;
-		this.cnpj = cnpj;
+		this.setCnpj(cnpj);
 	}
 	public void listar() {
 		Formatador f = new Formatador();
@@ -24,7 +26,7 @@ public class Fornecedor {
 		System.out.println("Nome: " + this.getNome());
 		System.out.println("CNPJ: " + f.cnpj(this.getCnpj()));
 	}
-	public Produto fornecer(String nome, int quantidade, double precoCusto) {
+	public Produto comprar(String nome, int quantidade, double precoCusto) {
 		Produto produto = new Produto();
 		produto.setNome(nome);
 		produto.setPrecoCusto(precoCusto);

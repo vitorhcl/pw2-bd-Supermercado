@@ -10,6 +10,8 @@ public class Produto {
 		return codBar;
 	}
 	public void setCodBar(String codBar) {
+		if(codBar.length() != 13)
+			throw new IllegalArgumentException();
 		this.codBar = codBar;
 	}
 	public String getNome() {
@@ -48,14 +50,19 @@ public class Produto {
 	public void listar() {
 		Formatador f = new Formatador();
 		
-		System.out.println("Nome: " + this.getNome());
-		System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
-		System.out.println("Preço de custo: " + f.moeda(this.getPrecoCusto()));
-		System.out.println("Preço de venda: " + f.moeda(this.getPrecoVenda()));
-		System.out.println("Categoria: " + this.getCategoria());
+		if(nome != null)
+			System.out.println("Nome: " + this.getNome());
+		if(codBar != null)
+			System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
+		if(precoCusto > 0)
+			System.out.println("Preço de custo: " + f.moeda(this.getPrecoCusto()));
+		if(precoVenda > 0)
+			System.out.println("Preço de venda: " + f.moeda(this.getPrecoVenda()));
+		if(categoria != null)
+			System.out.println("Categoria: " + this.getCategoria());
 	}
 	public void cadastrar(String codBar, double precoVenda, String categoria) {
-		this.codBar = codBar;
+		this.setCodBar(codBar);
 		this.precoVenda = precoVenda;
 		this.categoria = categoria;
 	}

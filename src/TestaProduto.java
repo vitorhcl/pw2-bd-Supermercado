@@ -2,13 +2,22 @@
 public class TestaProduto {
 	static Fornecedor forn = TestaFornecedor.criaFornecedor();
 	public static Produto criaProduto1() {
-		Produto produto1 = forn.fornecer("Arroz", 320, 5);
+		FornProd fp1 = new FornProd();
+		
+		Produto produto1 = forn.comprar("Arroz", 320, 5);
 		produto1.cadastrar("7898357410015", 8, "Alimentos");
+		
+		fp1.setFornecedor(forn);
+		fp1.setProduto(produto1);
 		return produto1;
 	}
 	public static Produto criaProduto2() {
-		Produto produto2 = forn.fornecer("Feijão", 370, 15);
+		FornProd fp2 = new FornProd();
+		Produto produto2 = forn.comprar("Feijão", 370, 15);
 		produto2.cadastrar("7897652320359", 20, "Alimentos");
+		
+		fp2.setFornecedor(forn);
+		fp2.setProduto(produto2);
 		return produto2;
 	}
 	public static void main(String[] args) {

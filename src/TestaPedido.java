@@ -8,17 +8,16 @@ public class TestaPedido {
 		item2.cadastrar(produto2, 5);
 				
 		Cliente cliente = new Cliente();
-		cliente.cadastrar("1", "12345678909");
+		cliente.cadastrar("00001", "12345678909");
 		
-		FormPag formpag = new FormPag();
-		formpag.setNome("Crédito");
+		FormPag formpag = new FormPag("Crédito", FormPagEnum.CREDITO);
 		
 		Nf nf = new Nf();
-		nf.cadastrar("78995865937", "2535");
+		nf.cadastrar("7899586528937", "2535");
 		
 		Pedido pedido = new Pedido();
 		pedido.adicionarItens(item1, item2);
-		pedido.cadastrar("1", cliente, formpag, nf);
+		pedido.cadastrar("000001", cliente, formpag, nf);
 		return pedido;
 	}
 	public static void main(String[] args) {

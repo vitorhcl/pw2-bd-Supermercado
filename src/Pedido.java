@@ -12,7 +12,9 @@ public class Pedido {
 	public String getNumero() {
 		return numero;
 	}
-	public void setNumPedido(String numero) {
+	public void setNumero(String numero) {
+		if(numero.length() != 6)
+			throw new IllegalArgumentException();
 		this.numero = numero;
 	}
 	public Cliente getCliente() {
@@ -49,7 +51,7 @@ public class Pedido {
 		this.nf = nf;
 	}
 	public void cadastrar(String numero, Cliente cliente, FormPag formPag, Nf nf) {
-		this.numero = numero;
+		this.setNumero(numero);
 		this.cliente = cliente;
 		this.formPag = formPag;
 		
@@ -68,10 +70,10 @@ public class Pedido {
 		System.out.println("Forma de pagamento: " + this.getFormPag().getNome());
 		this.getCliente().listar();
 		this.getItens().forEach(itemPed -> itemPed.listar());
-		System.out.println("Foi atendido: " + this.isAtendido());
+		System.out.println("Foi atendido: " + (this.isAtendido() ? "sim" : "não"));
 	}
 	public void cadastrar(String numero, Cliente cliente, FormPag formPag, Nf nf, List<ItemPed> itens) {
-		this.numero = numero;
+		this.setNumero(numero);
 		this.cliente = cliente;
 		this.formPag = formPag;
 		

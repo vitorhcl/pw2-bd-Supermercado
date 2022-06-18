@@ -7,6 +7,8 @@ public class ItemPed {
 		return qtd;
 	}
 	public void setQtd(int qtd) {
+		if(qtd == 0)
+			throw new IllegalArgumentException();
 		this.qtd = qtd;
 	}
 	public Produto getProduto() {

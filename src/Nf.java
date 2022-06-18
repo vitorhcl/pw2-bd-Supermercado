@@ -11,6 +11,8 @@ public class Nf {
 		return num;
 	}
 	public void setNum(String num) {
+		if(num.length() != 4)
+			throw new IllegalArgumentException();
 		this.num = num;
 	}
 	public int getTotal() {
@@ -29,6 +31,8 @@ public class Nf {
 		return codBar;
 	}
 	public void setCodBar(String codBar) {
+		if(codBar.length() != 13)
+			throw new IllegalArgumentException();
 		this.codBar = codBar;
 	}
 	public Pedido getPedido() {
@@ -52,9 +56,9 @@ public class Nf {
 		this.num = num;
 	}
 	public void cadastrar(String codBar, String num, LocalDate dataEmi) {
-		this.codBar = codBar;
+		this.setCodBar(codBar);
 		this.dataEmi = dataEmi;
-		this.num = num;
+		this.setNum(num);
 	}
 	public void listar() {
 		Formatador f = new Formatador();
