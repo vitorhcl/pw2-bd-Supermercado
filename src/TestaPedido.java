@@ -26,8 +26,10 @@ public class TestaPedido {
 		System.out.println("Pedido:");
 		pedido.listar();
 		
-		System.out.println();
-		System.out.println("Nota Fiscal: ");
+		System.out.println("\nForma de pagamento:");
+		pedido.getFormPag().listar();
+		
+		System.out.println("\nNota Fiscal: ");
 		pedido.getNf().listar();
 	}
 }

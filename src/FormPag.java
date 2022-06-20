@@ -2,6 +2,9 @@
 public class FormPag {
 	private String nome;
 	private FormPagEnum forma;
+	public void listar() {
+		System.out.println(this.nome);
+	}
 	public FormPag(String nome, FormPagEnum forma) {
 		this.nome = nome;
 		this.forma = forma;
