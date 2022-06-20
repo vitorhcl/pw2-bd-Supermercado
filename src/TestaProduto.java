@@ -9,6 +9,7 @@ public class TestaProduto {
 		
 		fp1.setFornecedor(forn);
 		fp1.setProduto(produto1);
+		Supermercado.getProdutos().add(produto1);
 		return produto1;
 	}
 	public static Produto criaProduto2() {
@@ -18,6 +19,7 @@ public class TestaProduto {
 		
 		fp2.setFornecedor(forn);
 		fp2.setProduto(produto2);
+		Supermercado.getProdutos().add(produto2);
 		return produto2;
 	}
 	public static void main(String[] args) {

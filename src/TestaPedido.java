@@ -7,8 +7,7 @@ public class TestaPedido {
 		item1.cadastrar(produto1, 2);
 		item2.cadastrar(produto2, 5);
 				
-		Cliente cliente = new Cliente();
-		cliente.cadastrar("00001", "12345678909");
+		Cliente cliente = TestaCliente.criaCliente();
 		
 		FormPag formpag = new FormPag("Crédito", FormPagEnum.CREDITO);
 		
@@ -18,6 +17,8 @@ public class TestaPedido {
 		Pedido pedido = new Pedido();
 		pedido.adicionarItens(item1, item2);
 		pedido.cadastrar("000001", cliente, formpag, nf);
+		Supermercado.getPedidos().add(pedido);
+		Supermercado.getNfs().add(nf);
 		return pedido;
 	}
 	public static void main(String[] args) {

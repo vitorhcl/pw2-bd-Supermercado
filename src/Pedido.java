@@ -36,6 +36,8 @@ public class Pedido {
 		this.atendente = atendente;
 	}
 	public void atendido() {
+		if(this.atendido)
+			System.out.println("Este pedido já foi atendido!");
 		this.atendido = true;
 	}
 	public List<ItemPed> getItens() {
