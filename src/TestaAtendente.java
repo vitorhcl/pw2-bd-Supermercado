@@ -6,13 +6,13 @@ public class TestaAtendente {
 		Supermercado.getAtendentes().add(aten);
 		return aten;
 	}
-	
+
 	public static void main(String[] args) {
 		Pedido pedido = TestaPedido.criaPedido();
-		
+
 		Atendente aten = criaAtendente();
 		aten.atenderPedido(pedido);
-		
+
 		aten.listar();
 		System.out.println();
 		pedido.listar();

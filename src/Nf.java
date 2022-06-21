@@ -1,68 +1,83 @@
 import java.time.LocalDate;
 
-public class Nf {
+public class Nf implements Listavel {
 	public String num;
 	public int total;
 	private int qtdTotal;
 	private String codBar;
 	private Pedido pedido;
 	private LocalDate dataEmi;
+
 	public String getNum() {
 		return num;
 	}
+
 	public void setNum(String num) {
-		if(num.length() != 4)
+		if (num.length() != 4)
 			throw new IllegalArgumentException();
 		this.num = num;
 	}
+
 	public int getTotal() {
 		return total;
 	}
+
 	public void setTotal(int total) {
 		this.total = total;
 	}
+
 	public int getQtdTotal() {
 		return qtdTotal;
 	}
+
 	public void setQtdTotal(int qtdTotal) {
 		this.qtdTotal = qtdTotal;
 	}
+
 	public String getCodBar() {
 		return codBar;
 	}
+
 	public void setCodBar(String codBar) {
-		if(codBar.length() != 13)
+		if (codBar.length() != 13)
 			throw new IllegalArgumentException();
 		this.codBar = codBar;
 	}
+
 	public Pedido getPedido() {
 		return pedido;
 	}
+
 	public void setPedido(Pedido numPedido) {
 		this.pedido = numPedido;
 	}
+
 	public LocalDate getDataEmi() {
 		return dataEmi;
 	}
+
 	public void setDataEmi(LocalDate dt) {
 		this.dataEmi = dt;
 	}
+
 	public void cadastrar(String codBar, String num) {
 		this.codBar = codBar;
-		
+
 		LocalDate dt = LocalDate.now();
 		this.dataEmi = dt;
-		
+
 		this.num = num;
 	}
+
 	public void cadastrar(String codBar, String num, LocalDate dataEmi) {
 		this.setCodBar(codBar);
 		this.dataEmi = dataEmi;
 		this.setNum(num);
 	}
+
 	public void listar() {
 		Formatador f = new Formatador();
-		
+
 		System.out.println("Número: " + this.getNum());
 		System.out.println("Número do pedido: " + this.getPedido().getNumero());
 		System.out.println("Código de barras: " + f.codBar(this.getCodBar()));

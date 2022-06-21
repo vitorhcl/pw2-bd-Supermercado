@@ -6,6 +6,7 @@ public class TestaFornecedor {
 		Supermercado.getFornecedores().add(forn);
 		return forn;
 	}
+
 	public static void main(String[] args) {
 		Fornecedor forn = criaFornecedor();
 		forn.listar();
