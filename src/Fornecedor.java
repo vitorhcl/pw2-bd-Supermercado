@@ -33,8 +33,9 @@ public class Fornecedor implements Listavel {
 		System.out.println("CNPJ: " + f.cnpj(this.getCnpj()));
 	}
 
-	public Produto comprar(String nome, int quantidade, double precoCusto) {
+	public Produto comprar(String codBar, String nome, int quantidade, double precoCusto) {
 		Produto produto = new Produto();
+		produto.setCodBar(codBar);
 		produto.setNome(nome);
 		produto.setPrecoCusto(precoCusto);
 		produto.adicionar(quantidade);

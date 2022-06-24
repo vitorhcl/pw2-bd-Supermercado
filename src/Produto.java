@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Produto implements Listavel {
 	private String codBar;
@@ -76,8 +77,7 @@ public class Produto implements Listavel {
 			System.out.println("Categoria: " + this.getCategoria());
 	}
 
-	public void cadastrar(String codBar, double precoVenda, String categoria) {
-		this.setCodBar(codBar);
+	public void cadastrar(double precoVenda, String categoria) {
 		this.precoVenda = precoVenda;
 		this.categoria = categoria;
 	}
