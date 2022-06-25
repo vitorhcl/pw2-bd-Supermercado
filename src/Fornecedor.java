@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fornecedor implements Listavel {
 	private String cnpj;
 	private String nome;
+	private List<Produto> produtos = new ArrayList<Produto>();
 
 	public String getCnpj() {
 		return cnpj;
@@ -20,6 +23,14 @@ public class Fornecedor implements Listavel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 
 	public void cadastrar(String nome, String cnpj) {
 		this.nome = nome;
@@ -31,14 +42,16 @@ public class Fornecedor implements Listavel {
 
 		System.out.println("Nome: " + this.getNome());
 		System.out.println("CNPJ: " + f.cnpj(this.getCnpj()));
+		System.out.print("Produtos fornecidos: ");
+		this.produtos.forEach(prod -> System.out.printf("%s (%s); ", prod.getNome(), prod.getCodBar()));
 	}
 
-	public Produto comprar(String codBar, String nome, int quantidade, double precoCusto) {
-		Produto produto = new Produto();
-		produto.setCodBar(codBar);
-		produto.setNome(nome);
-		produto.setPrecoCusto(precoCusto);
-		produto.adicionar(quantidade);
-		return produto;
+	public void comprar(Produto prod, int quantidade) {
+		prod.adicionar(quantidade);
+		if(prod.getFornecedores().contains(this))
+			return;
+		prod.getFornecedores().add(this);
+		this.getProdutos().add(prod);
 	}
+
 }

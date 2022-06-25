@@ -45,7 +45,7 @@ public class Principal {
 
 	private static void menuPrincipal() {
 		int escolha;
-		escolha = menu(true, "Selecione uma opção:", "Cadastrar", "Atender pedido", "Listar");
+		escolha = menu(true, "O que deseja fazer?", "Cadastrar", "Atender pedido", "Listar");
 		switch (escolha) {
 		case 1:
 			menuCadastro();
@@ -67,7 +67,7 @@ public class Principal {
 
 	private static void menuCadastro() {
 		int escolha;
-		escolha = menu(false, "Selecione uma opção:", "Pedido", "Cliente", "Fornecedor", "Produto", "Atendente");
+		escolha = menu(false, "O que deseja cadastrar?", "Pedido", "Cliente", "Fornecedor", "Fornecimento", "Produto", "Atendente");
 		try {
 			switch (escolha) {
 			case 1:
@@ -85,9 +85,12 @@ public class Principal {
 				menuCadastroForn();
 				break;
 			case 4:
-				menuCadastroProd();
+				menuCadastroFornecimento();
 				break;
 			case 5:
+				menuCadastroProd();
+				break;
+			case 6:
 				menuCadastroAtendente();
 				break;
 			}
@@ -130,20 +133,20 @@ public class Principal {
 			menuListar();
 	}
 
-	private static <T> int lerIndiceLista(Class<T> T, String msg) {
+	private static <T> int lerIndiceLista(Class<T> T, String msgErro) {
 		boolean existe = Supermercado.listar(T);
 		if (!existe)
 			return -1;
 		int num = ent.nextInt();
 		if (!(0 <= num && num <= Supermercado.getLista(T).size())) {
-			System.out.println(msg);
-			return lerIndiceLista(T, msg);
+			System.out.println(msgErro);
+			return lerIndiceLista(T, msgErro);
 		}
 		return num;
 	}
 
-	private static <T> T escolher(Class<T> T, String msg) {
-		int num = lerIndiceLista(T, msg);
+	private static <T> T escolher(Class<T> T, String msgErro) {
+		int num = lerIndiceLista(T, msgErro);
 		if (num == -1 || num == 0)
 			return null;
 
@@ -241,7 +244,7 @@ public class Principal {
 		System.out.print("Nome: ");
 		nome = ent.next();
 
-		System.out.print("CPF: ");
+		System.out.print("CPF (só digitos): ");
 		cpf = ent.next();
 
 		System.out.print("Salário: ");
@@ -255,6 +258,9 @@ public class Principal {
 		System.out.println("Escolha um fornecedor:");
 
 		Fornecedor forn = escolher(Fornecedor.class, "Fornecedor inválido!");
+		if(forn == null)
+			return;
+		
 		Produto prod = new Produto();
 
 		String nome, codBar, categoria;
@@ -273,20 +279,37 @@ public class Principal {
 		System.out.print("Preço de custo: ");
 		precoCusto = ent.nextDouble();
 
-		prod = forn.comprar(codBar, nome, quantidade, precoCusto);
-
+		forn.comprar(prod, quantidade);
+		
 		System.out.print("Preço de venda: ");
 		precoVenda = ent.nextDouble();
 
 		System.out.print("Categoria: ");
 		categoria = ent.next();
-		prod.cadastrar(precoVenda, categoria);
-
-		FornProd fp = new FornProd();
-		fp.setFornecedor(forn);
-		fp.setProduto(prod);
+		prod.cadastrar(nome, codBar, categoria, precoCusto, precoVenda);
+		forn.comprar(prod, quantidade);
+		
 		Supermercado.getProdutos().add(prod);
-		Supermercado.getFornProds().add(fp);
+
+	}
+	
+	private static void menuCadastroFornecimento() {
+		System.out.println("Escolha um fornecedor:");
+		Fornecedor forn = escolher(Fornecedor.class, "Fornecedor inválido");
+		if(forn == null)
+			return;
+		
+		System.out.println("Escolha um produto:");
+		Produto prod = escolher(Produto.class, "Produto inválido!");
+		if(prod == null)
+			return;
+		
+		int quantidade;
+		
+		System.out.print("Quantidade: ");
+		quantidade = ent.nextInt();
+		
+		forn.comprar(prod, quantidade);	
 	}
 
 	private static void menuCadastroForn() {
@@ -296,7 +319,7 @@ public class Principal {
 		System.out.print("Nome: ");
 		nome = ent.next();
 
-		System.out.print("CNPJ: ");
+		System.out.print("CNPJ (só digitos): ");
 		cnpj = ent.next();
 		forn.cadastrar(nome, cnpj);
 		Supermercado.getFornecedores().add(forn);
@@ -307,7 +330,7 @@ public class Principal {
 		String codigo, cpf;
 		System.out.print("Código (5 dígitos): ");
 		codigo = ent.next();
-		System.out.print("CPF: ");
+		System.out.print("CPF (só digitos): ");
 		cpf = ent.next();
 		clie.cadastrar(codigo, cpf);
 		Supermercado.getClientes().add(clie);

@@ -6,7 +6,6 @@ public class Supermercado {
 	private static List<Cliente> clientes = new ArrayList<Cliente>();
 	private static List<FormPag> formasPag = new ArrayList<FormPag>();
 	private static List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
-	private static List<FornProd> fornProds = new ArrayList<FornProd>();
 	private static List<ItemPed> itensPed = new ArrayList<ItemPed>();
 	private static List<Nf> nfs = new ArrayList<Nf>();
 	private static List<Pedido> pedidos = new ArrayList<Pedido>();
@@ -44,10 +43,6 @@ public class Supermercado {
 		return fornecedores;
 	}
 
-	public static List<FornProd> getFornProds() {
-		return fornProds;
-	}
-
 	public static List<ItemPed> getItensPed() {
 		return itensPed;
 	}
@@ -64,11 +59,13 @@ public class Supermercado {
 		return produtos;
 	}
 
-	private static <T> boolean listar(Class<T> T, String msg) {
+	private static <T> boolean listar(Class<T> T, String msgErro) {
 		List<T> lista = (List<T>) Supermercado.getLista(T);
+		if(T == Produto.class)
+			produtos.removeIf(prod -> prod.getEstoque() == 0);
 		int i = 0;
 		if (lista.size() == 0) {
-			System.out.println(msg);
+			System.out.println(msgErro);
 			return false;
 		}
 		for (Object item : lista) {
@@ -81,21 +78,21 @@ public class Supermercado {
 	}
 
 	public static boolean listar(Class<?> T) {
-		String msg = "Sem cadastros";
+		String msgErro = "Sem cadastros";
 		if (T == Produto.class)
-			msg = "Nenhum produto foi cadastrado";
+			msgErro = "Nenhum produto foi cadastrado";
 		else if (T == Fornecedor.class)
-			msg = "Nenhum fornecedor foi cadastrado";
+			msgErro = "Nenhum fornecedor foi cadastrado";
 		else if (T == Pedido.class)
-			msg = "Nenhum pedido foi realizado";
+			msgErro = "Nenhum pedido foi realizado";
 		else if (T == Atendente.class)
-			msg = "Nenhum atendente foi cadastrado";
+			msgErro = "Nenhum atendente foi cadastrado";
 		else if (T == Cliente.class)
-			msg = "Nenhum cliente foi cadastrado";
+			msgErro = "Nenhum cliente foi cadastrado";
 		else if (T == FormPag.class)
-			msg = "Nenhuma forma de pagamento foi cadastrada";
+			msgErro = "Nenhuma forma de pagamento foi cadastrada";
 		else if (T == Nf.class)
-			msg = "Nenhuma nota fiscal foi emitida";
-		return listar(T, msg);
+			msgErro = "Nenhuma nota fiscal foi emitida";
+		return listar(T, msgErro);
 	}
 }

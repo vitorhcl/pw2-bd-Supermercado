@@ -109,6 +109,8 @@ public class Pedido implements Listavel {
 	}
 
 	private void adicionarItem(ItemPed item) {
+		item.getProduto().remover(item.getQtd());
+		
 		Produto prodExis = new Produto();
 		for (ItemPed itemExis : this.itens) {
 			prodExis = itemExis.getProduto();

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Produto implements Listavel {
@@ -5,8 +6,9 @@ public class Produto implements Listavel {
 	private String nome;
 	private double precoVenda;
 	private double precoCusto;
-	private double estoque = 0;
+	private int estoque = 0;
 	private String categoria;
+	private List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 
 	public String getCodBar() {
 		return codBar;
@@ -42,16 +44,16 @@ public class Produto implements Listavel {
 		this.precoCusto = precoCusto;
 	}
 
-	public double getEstoque() {
+	public int getEstoque() {
 		return estoque;
 	}
 
 	public void adicionar(int quantidade) {
-		this.estoque += estoque;
+		this.estoque += quantidade;
 	}
 
 	public void remover(int quantidade) {
-		this.estoque += estoque;
+		this.estoque -= quantidade;
 	}
 
 	public String getCategoria() {
@@ -62,22 +64,33 @@ public class Produto implements Listavel {
 		this.categoria = categoria;
 	}
 
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
 	public void listar() {
 		Formatador f = new Formatador();
 
-		if (nome != null)
-			System.out.println("Nome: " + this.getNome());
-		if (codBar != null)
-			System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
-		if (precoCusto > 0)
-			System.out.println("Preço de custo: " + f.moeda(this.getPrecoCusto()));
-		if (precoVenda > 0)
-			System.out.println("Preço de venda: " + f.moeda(this.getPrecoVenda()));
-		if (categoria != null)
-			System.out.println("Categoria: " + this.getCategoria());
+		System.out.println("Nome: " + this.getNome());
+		System.out.println("Código de barras: " + f.codBar(this.getCodBar()));
+		System.out.println("Preço de custo: " + f.moeda(this.getPrecoCusto()));
+		System.out.println("Preço de venda: " + f.moeda(this.getPrecoVenda()));
+		System.out.println("Categoria: " + this.getCategoria());
+		System.out.println("Estoque: " + this.getEstoque());
+		
+		System.out.print("Fornecedores: ");
+		this.fornecedores.forEach(forn -> System.out.print(forn.getNome() + "; "));
+		System.out.println();
 	}
 
-	public void cadastrar(double precoVenda, String categoria) {
+	public void cadastrar(String nome, String codBar, String categoria, double precoCusto, double precoVenda) {
+		this.nome = nome;
+		this.codBar = codBar;
+		this.categoria = categoria;
 		this.precoVenda = precoVenda;
 		this.categoria = categoria;
 	}

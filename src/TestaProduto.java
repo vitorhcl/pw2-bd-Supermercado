@@ -3,38 +3,38 @@ public class TestaProduto {
 	static Fornecedor forn = TestaFornecedor.criaFornecedor();
 
 	public static Produto criaProduto1() {
-		FornProd fp1 = new FornProd();
+		Produto prod1 = new Produto();
+		prod1.cadastrar("Arroz", "7898357410015", "Grãos", 5, 8);
 
-		Produto produto1 = forn.comprar("7898357410015", "Arroz", 320, 5);
-		produto1.cadastrar(8, "Grãos");
-
-		fp1.setFornecedor(forn);
-		fp1.setProduto(produto1);
-		Supermercado.getProdutos().add(produto1);
-		return produto1;
+		forn.comprar(prod1, 320);
+		Supermercado.getProdutos().add(prod1);
+		return prod1;
 	}
 
 	public static Produto criaProduto2() {
-		FornProd fp2 = new FornProd();
-		Produto produto2 = forn.comprar("7897652320359", "Feijão", 370, 15);
-		produto2.cadastrar(20, "Grãos");
+		Produto prod2 = new Produto();
+		prod2.cadastrar("Feijão", "7897652320359", "Grãos", 15, 20);
 
-		fp2.setFornecedor(forn);
-		fp2.setProduto(produto2);
-		Supermercado.getProdutos().add(produto2);
-		return produto2;
+		forn.comprar(prod2, 370);
+		Supermercado.getProdutos().add(prod2);
+		return prod2;
 	}
 
 	public static void main(String[] args) {
-		Produto produto1 = criaProduto1();
-		Produto produto2 = criaProduto2();
+		Produto prod1 = criaProduto1();
+		Produto prod2 = criaProduto2();
 
 		System.out.println("Produto 1:");
-		produto1.listar();
+		prod1.listar();
 
 		System.out.println();
 
 		System.out.println("Produto 2:");
-		produto2.listar();
+		prod2.listar();
+		
+		System.out.println();
+		
+		System.out.println("Fornecedor:");
+		forn.listar();
 	}
 }
