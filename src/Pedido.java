@@ -108,9 +108,22 @@ public class Pedido implements Listavel {
 		this.nf = nf;
 	}
 
+	private void adicionarItem(ItemPed item) {
+		Produto prodExis = new Produto();
+		for (ItemPed itemExis : this.itens) {
+			prodExis = itemExis.getProduto();
+			if (item.getProduto().getCodBar() == prodExis.getCodBar()) {
+				prodExis.adicionar(item.getQtd());
+				return;
+			}
+		}
+
+		this.itens.add(item);
+	}
+
 	public void adicionarItens(ItemPed... itens) {
 		for (ItemPed item : itens)
-			this.itens.add(item);
+			this.adicionarItem(item);
 	}
 
 	public boolean isAtendido() {

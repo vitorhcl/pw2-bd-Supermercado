@@ -51,7 +51,7 @@ public class Principal {
 			menuCadastro();
 			break;
 		case 2:
-			atenderPedido();
+			menuAtenderPedido();
 			break;
 		case 3:
 			menuListar();
@@ -151,7 +151,7 @@ public class Principal {
 		return (T) objeto;
 	}
 
-	private static void atenderPedido() {
+	private static void menuAtenderPedido() {
 		System.out.println("Escolha o atendente:");
 		Atendente atendente = escolher(Atendente.class, "Atendente inválido!");
 		if (atendente == null)
@@ -170,7 +170,7 @@ public class Principal {
 		Cliente clie = escolher(Cliente.class, "Cliente inválido");
 
 		Pedido ped = new Pedido();
-		boolean existeProds = adicionarItens(ped);
+		boolean existeProds = menuAdicionarItens(ped);
 		if (!existeProds)
 			return;
 		if (ped.getItens().size() == 0) {
@@ -183,7 +183,7 @@ public class Principal {
 		numero = ent.next();
 
 		System.out.println("\nNota fiscal:");
-		Nf nf = emitirNf();
+		Nf nf = menuEmitirNf();
 
 		System.out.println("Forma de pagamento:");
 		FormPag formPag = escolher(FormPag.class, "Forma de pagamento inválida!");
@@ -194,7 +194,7 @@ public class Principal {
 		Supermercado.getPedidos().add(ped);
 	}
 
-	private static Nf emitirNf() {
+	private static Nf menuEmitirNf() {
 		Nf nf = new Nf();
 		String num, codBar, strDataEmi;
 		LocalDate dataEmi;
@@ -218,7 +218,7 @@ public class Principal {
 		return nf;
 	}
 
-	private static boolean adicionarItens(Pedido ped) {
+	private static boolean menuAdicionarItens(Pedido ped) {
 		System.out.println("Adicione um produto ao pedido ou digite 0 para finalizar a compra:");
 		int num = lerIndiceLista(Produto.class, "Produto inválido!");
 
@@ -229,7 +229,7 @@ public class Principal {
 
 			itemPed.cadastrar(Supermercado.getProdutos().get(num - 1), quantidade);
 			ped.adicionarItens(itemPed);
-			adicionarItens(ped);
+			menuAdicionarItens(ped);
 		}
 		return true;
 	}
